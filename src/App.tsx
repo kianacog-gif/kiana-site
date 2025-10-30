@@ -2,33 +2,43 @@ import { useState } from "react";
 
 type Tab = "about" | "research" | "pubs" | "resume" | "contact" | null;
 
+// Tune this if you want more/less air above/below the header
+const HEADER_H = 300; // px
+
 export default function App() {
   const [active, setActive] = useState<Tab>(null);
 
   return (
     <main className="min-h-screen bg-neutral-950 text-neutral-200">
-      {/* HERO: name centered, tabs under it */}
-      <section className="min-h-screen grid place-items-center">
-        <div className="w-full max-w-3xl px-4 text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold text-white">
+      {/* FIXED, CENTERED HEADER (never moves) */}
+      <header
+        className="fixed inset-x-0 top-0 z-50 border-b border-neutral-800/70 bg-neutral-950/85 backdrop-blur"
+        style={{ height: HEADER_H }}
+      >
+        <div className="h-full mx-auto max-w-4xl px-4 flex flex-col items-center justify-center text-center">
+          <img
+            src="/avatar.JPG"
+            alt="Kiana portrait"
+            className="h-24 w-24 rounded-full object-cover ring-1 ring-neutral-800 shadow-md"
+          />
+          <h1 className="mt-4 text-4xl sm:text-5xl font-bold text-white">
             Kiana Cogdill-Richardson
           </h1>
-          <p className="mt-3 text-neutral-400">
-            Research Scientist · Mixed-methods · Quant modeling · Experiments
-          </p>
 
-          {/* tabs */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+          {/* Centered tabs */}
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
             {[
               { id: "about", label: "About" },
               { id: "research", label: "Research" },
               { id: "pubs", label: "Publications" },
               { id: "resume", label: "Resume" },
               { id: "contact", label: "Contact" },
-            ].map(t => (
+            ].map((t) => (
               <button
                 key={t.id}
-                onClick={() => setActive(a => (a === (t.id as Tab) ? null : (t.id as Tab)))}
+                onClick={() =>
+                  setActive((prev) => (prev === (t.id as Tab) ? null : (t.id as Tab)))
+                }
                 className={`rounded-full px-4 py-2 text-sm border transition
                   ${active === (t.id as Tab)
                     ? "border-indigo-500 bg-indigo-500/10 text-white"
@@ -38,58 +48,66 @@ export default function App() {
               </button>
             ))}
           </div>
+        </div>
+      </header>
 
-          {/* reveal panel appears directly under tabs */}
+      {/* CONTENT AREA — always centered, header never shifts */}
+      <div className="mx-auto max-w-4xl px-4">
+        {/* Spacer equals header height so content starts beneath it */}
+        <div style={{ height: HEADER_H }} />
+
+        {/* Reveal panel sits under the header; no scrolling on click */}
+        <div className="pt-6">
           <div
-            className={`mt-6 overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/60 text-left transition-all duration-300
-              ${active ? "max-h-[70vh] opacity-100" : "max-h-0 opacity-0"}`}
+            className={`overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/60 transition-all duration-300 mx-auto
+                        ${active ? "max-h-[80vh] opacity-100" : "max-h-0 opacity-0"}`}
             aria-live="polite"
           >
             {active && (
               <div className="p-6">
                 {active === "about" && (
-                  <div>
+                  <section>
                     <h2 className="text-xl font-semibold text-white">About</h2>
                     <p className="mt-2 text-neutral-300">
                       I’m a research scientist bridging behavioral science, quantitative modeling,
                       and narrative analysis. I scope decisions, design mixed-methods evidence,
                       and report clear recommendations.
                     </p>
-                  </div>
+                  </section>
                 )}
 
                 {active === "research" && (
-                  <div>
+                  <section>
                     <h2 className="text-xl font-semibold text-white">Selected Research</h2>
                     <ul className="mt-3 space-y-3 text-sm text-neutral-300">
                       <li>
                         <span className="font-medium text-neutral-100">Narrative coherence automation:</span>{" "}
-                        204 Dignity Therapy stories scored via human-validated rubric; reproducible pipeline.
+                        204 Dignity Therapy stories with a human-validated rubric; reproducible pipeline.
                       </li>
                       <li>
                         <span className="font-medium text-neutral-100">Resilience profiles:</span>{" "}
-                        LPA / clustering across lifespan stress; interpretable profile readouts.
+                        LPA / clustering across lifespan stress; interpretable profiles tied to outcomes.
                       </li>
                       <li>
-                        <span className="font-medium text-neutral-100">Experimentation:</span>{" "}
-                        brief → metrics → power → readout with guardrails.
+                        <span className="font-medium text-neutral-100">Experiments:</span>{" "}
+                        brief → metrics → power → guardrails → actionable readouts.
                       </li>
                     </ul>
-                  </div>
+                  </section>
                 )}
 
                 {active === "pubs" && (
-                  <div>
+                  <section>
                     <h2 className="text-xl font-semibold text-white">Publications</h2>
                     <ul className="mt-3 space-y-2 text-sm text-neutral-300">
                       <li>Author, K. (Year). <em>Title of paper</em>. Journal. <a className="underline" href="#" target="_blank">PDF</a></li>
-                      <li>Author, K. (Year). <em>Another paper</em>. Journal. <a className="underline" href="#" target="_blank">PDF</a></li>
+                      <li>— Add 2–4 representative items with links.</li>
                     </ul>
-                  </div>
+                  </section>
                 )}
 
                 {active === "resume" && (
-                  <div>
+                  <section>
                     <h2 className="text-xl font-semibold text-white">Resume</h2>
                     <p className="mt-2 text-neutral-300">One-page summary available below.</p>
                     <a
@@ -98,26 +116,40 @@ export default function App() {
                     >
                       Download Resume (PDF)
                     </a>
-                  </div>
+                  </section>
                 )}
 
                 {active === "contact" && (
-                  <div>
+                  <section>
                     <h2 className="text-xl font-semibold text-white">Contact</h2>
                     <div className="mt-2 space-y-1 text-neutral-300">
-                      <p>Email: <a className="underline" href="mailto:you@example.com">you@example.com</a></p>
-                      <p>LinkedIn: <a className="underline" href="https://www.linkedin.com/in/your-handle" target="_blank">linkedin.com/in/your-handle</a></p>
+                      <p>
+                        Email:{" "}
+                        <a className="underline" href="mailto:you@example.com">
+                          you@example.com
+                        </a>
+                      </p>
+                      <p>
+                        LinkedIn:{" "}
+                        <a
+                          className="underline"
+                          href="https://www.linkedin.com/in/your-handle"
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          linkedin.com/in/your-handle
+                        </a>
+                      </p>
                     </div>
-                  </div>
+                  </section>
                 )}
               </div>
             )}
           </div>
-
-          {/* tiny hint/link to scroll for more if you add anything below later */}
-          {/* <p className="mt-6 text-xs text-neutral-500">Scroll for more</p> */}
         </div>
-      </section>
+
+        <div className="py-10" />
+      </div>
     </main>
   );
 }
