@@ -6,7 +6,7 @@ type Tab = "about" | "projects" | "pubs" | "resume" | "contact" | null;
 const HEADER_H = 300; // px
 
 export default function App() {
-  const [active, setActive] = useState<Tab>(null);
+  const [active, setActive] = useState<Tab>("about");
 
   return (
     <main className="min-h-screen bg-neutral-950 text-neutral-200">
