@@ -58,7 +58,12 @@ export default function App() {
       {/* CONTENT AREA — always centered, header never shifts */}
       <div className="mx-auto max-w-6xl px-4">
         {/* Spacer equals header height so content starts beneath it */}
-        <div style={{ height: HEADER_H }} />
+        <div
+  style={{
+    height: HEADER_H,
+    marginBottom: "1.5rem", // ~24px extra spacing
+  }}
+/>
 
         {/* Reveal panel sits under the header; no scrolling on click */}
         <div className="pt-6">
