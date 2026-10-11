@@ -31,7 +31,7 @@ export default function App() {
               { id: "about", label: "About" },
               { id: "projects", label: "Current Projects" },
               { id: "pubs", label: "Publications" },
-              { id: "resume", label: "Resume" },
+              { id: "resume", label: "Curriculum Vitae" },
               { id: "contact", label: "Contact" },
             ].map((t) => (
               <button
@@ -111,19 +111,39 @@ export default function App() {
     {/* ——— CURRENT PROJECT SUMMARY ——— */}
     <div className="mt-4 text-neutral-300 space-y-2">
   <p>
-    I am currently completing a Consensual Qualitative Research project, where I led five coders 
-    to examine how adults aged 70 and older describe what it means to live a complete life. 
-    In parallel, I am developing a structural coherence coding manual designed to evaluate how 
-    individuals organize their life stories. This manual will be used to train an AI-based scoring model 
-    for large-scale narrative analysis. I also recently completed a UX Research bootcamp through the 
-    Erdos Institute, where I strengthened skills in applied research design, rapid experimentation, 
-    user-centered interviewing, and translating qualitative and quantitative insights into actionable 
-    recommendations for product, clinical, and community settings. If you have any questions about any 
-    of these ongoing projects, feel free to contact me—I’d love to chat!
+    I am currently working on several research projects, both independently and with collaborators.
+  </p>
+  <p>
+    I'm leading a study examining public attitudes and psychological reactions to AI-powered
+    griefbots. This involves reviewing existing technologies, designing the study, and developing
+    approaches for qualitative and computational text analysis. The project will also inform a chapter
+    for <em>Memory and Psychotherapy</em>, an upcoming volume from Edward Elgar Publishing (2028).
+    I'm also leading a thematic analysis project with the TAG Center examining how children
+    describe their experiences of grief- and trauma-focused therapy, including their initial attitudes,
+    reactions to treatment, and reflections on the therapeutic process.
+  </p>
+  <p>
+    I'm the lead writer of a manuscript nearing submission that examines how adults aged 70 and
+    older describe what it means to live a complete life. For this study, I led a team of five coders
+    through a Consensual Qualitative Research analysis. In related work, I'm conducting analyses to
+    better understand how acknowledging a terminal illness relates to existential life completion
+    among patients with serious illness.
+  </p>
+  <p>
+    Another project I'm collaborating on uses I-poems, a qualitative method, to explore how older
+    adults express their experiences of life completion through personal narratives.
+  </p>
+  <p>
+    Finally, I'm developing a coding framework for evaluating structural coherence in life stories and
+    examining whether AI can serve as a reliable secondary coder by comparing its ratings with
+    those of human researchers.
+  </p>
+  <p>
+    If you're interested in any of these projects, feel free to reach out. I'd love to chat!
   </p>
 
       <p className="text-sm text-neutral-500 italic">
-        Updated: November 2025
+        Updated: October 2026
       </p>
     </div>
 
@@ -146,6 +166,45 @@ export default function App() {
   <section className="p-6">
     <h2 className="text-xl font-semibold text-white mb-4">Publications</h2>
 
+    {/* ——— IN PRESS / IN PROGRESS ——— */}
+    <h3 className="text-lg font-semibold text-white mb-3">In Press &amp; In Progress</h3>
+    <div className="space-y-4 mb-10">
+      {[
+        {
+          status: "In press.",
+          authors: <><b>Cogdill-Richardson, K.</b>, Whitacre, K., &amp; Bluck, S.</>,
+          title: "Looking back at the life lived: Shaping the final story for family.",
+          venue: "Applied Cognitive Psychology.",
+        },
+        {
+          status: "Submitted (June 2026).",
+          authors: <><b>Cogdill-Richardson, K.</b>, Schroeder, H., &amp; Bluck, S.</>,
+          title: "Symbolic thinking in stories of parental loss: Implications for understanding adult grief.",
+          venue: "Qualitative Psychology.",
+        },
+        {
+          status: "In preparation.",
+          authors: <><b>Cogdill-Richardson, K.</b>, &amp; Bluck, S.</>,
+          title: "A “pretty good run”: Older adults reflect on what makes life feel complete.",
+        },
+        {
+          status: "In preparation.",
+          authors: <>Alvis, L., Widales, O., Schroeder, H., Oosterhoff, B., <b>Cogdill-Richardson, K.</b>, &amp; Kaplow, J.</>,
+          title: "Dissociation and grief in bereaved youth: Differential associations of derealization and depersonalization.",
+        },
+      ].map((p) => (
+        <div key={p.title} className="p-4 rounded-xl border border-neutral-800 bg-neutral-900/40 space-y-1">
+          <p className="text-neutral-300 text-sm">
+            <span className="font-semibold">{p.status}</span>{" "}
+            {p.title}{" "}
+            {p.venue && <em>{p.venue}</em>}
+          </p>
+          <p className="text-neutral-400 text-sm">{p.authors}</p>
+        </div>
+      ))}
+    </div>
+
+    <h3 className="text-lg font-semibold text-white mb-3">Published</h3>
     <div className="space-y-6">
 
       {/* 1 — Mechanisms of Dignity Therapy */}
@@ -269,30 +328,25 @@ export default function App() {
 {/* RESUME TAB */}
 {active === "resume" && (
   <section className="p-6">
-    <h2 className="text-xl font-semibold text-white">Resume</h2>
+    <h2 className="text-xl font-semibold text-white">Curriculum Vitae</h2>
     <p className="mt-2 text-neutral-300">
-      Download the latest version below.
+      Download my CV below. Resume available upon request.
     </p>
 
     <div className="mt-4 flex flex-col sm:flex-row gap-3">
-      {/* PDF BUTTON */}
-      <a
-        className="inline-block rounded-xl border border-neutral-700 bg-neutral-900 px-4 py-2 text-sm text-neutral-200 hover:bg-neutral-800"
-        href="/resume-11-25.pdf"
-        download
-      >
-        Download Resume (PDF)
-      </a>
-
       {/* DOCX BUTTON */}
       <a
         className="inline-block rounded-xl border border-neutral-700 bg-neutral-900 px-4 py-2 text-sm text-neutral-200 hover:bg-neutral-800"
-        href="/resume-11-25.docx"
+        href="/Cogdill-Richardson_CV_October2026.docx"
         download
       >
-        Download Resume (DOCX)
+        Download CV (DOCX)
       </a>
     </div>
+
+    <p className="mt-3 text-sm text-neutral-500 italic">
+      Updated: October 2026
+    </p>
   </section>
 )}
 
