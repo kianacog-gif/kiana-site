@@ -108,43 +108,60 @@ export default function App() {
   <section className="p-6">
  
 
-    {/* ——— CURRENT PROJECT SUMMARY ——— */}
-    <div className="mt-4 text-neutral-300 space-y-2">
-  <p>
-    I am currently working on several research projects, both independently and with collaborators.
-  </p>
-  <p>
-    I'm leading a study examining public attitudes and psychological reactions to AI-powered
-    griefbots. This involves reviewing existing technologies, designing the study, and developing
-    approaches for qualitative and computational text analysis. The project will also inform a chapter
-    for <em>Memory and Psychotherapy</em>, an upcoming volume from Edward Elgar Publishing (2028).
-    I'm also leading a thematic analysis project with the TAG Center examining how children
-    describe their experiences of grief- and trauma-focused therapy, including their initial attitudes,
-    reactions to treatment, and reflections on the therapeutic process.
-  </p>
-  <p>
-    I'm the lead writer of a manuscript nearing submission that examines how adults aged 70 and
-    older describe what it means to live a complete life. For this study, I led a team of five coders
-    through a Consensual Qualitative Research analysis. In related work, I'm conducting analyses to
-    better understand how acknowledging a terminal illness relates to existential life completion
-    among patients with serious illness.
-  </p>
-  <p>
-    Another project I'm collaborating on uses I-poems, a qualitative method, to explore how older
-    adults express their experiences of life completion through personal narratives.
-  </p>
-  <p>
-    Finally, I'm developing a coding framework for evaluating structural coherence in life stories and
-    examining whether AI can serve as a reliable secondary coder by comparing its ratings with
-    those of human researchers.
-  </p>
-  <p>
-    If you're interested in any of these projects, feel free to reach out. I'd love to chat!
-  </p>
+    {/* ——— ACTIVE RESEARCH PROJECTS ——— */}
+    <h2 className="text-xl font-semibold text-white">Active Research Projects</h2>
+    <p className="mt-1 text-sm text-neutral-500 italic">Updated October 2026</p>
 
-      <p className="text-sm text-neutral-500 italic">
-        Updated: October 2026
-      </p>
+    <div className="mt-6 text-neutral-300 space-y-8">
+      {[
+        {
+          lab: "Life Story Lab | University of Florida",
+          url: "https://lifestorylab.psych.ufl.edu/",
+          projects: [
+            {
+              name: "AI and Grief",
+              text: <>Leading a study examining public attitudes and psychological reactions to AI-powered griefbots, integrating qualitative and computational text analysis. This project is being developed as a chapter for <em>Memory and Psychotherapy</em> (Edward Elgar Publishing, 2028).</>,
+            },
+            {
+              name: "Existential Life Completion",
+              text: <>First-authoring a manuscript examining how older adults understand what it means to live a complete life. Led a five-member coding team using Consensual Qualitative Research. Manuscript in preparation for <em>Qualitative Psychology</em>.</>,
+            },
+            {
+              name: "LLM-Assisted Narrative Analysis",
+              text: <>Developing and evaluating an LLM-assisted approach to identifying narrative coherence in older cancer patients' life stories.</>,
+            },
+            {
+              name: "Narrative Identity and I-Poems",
+              text: <>Collaborating on a study using I-poems to examine how older adults express their experiences of life completion through personal narratives. Manuscript in preparation for <em>Nursing Research</em>.</>,
+            },
+          ],
+        },
+        {
+          lab: "Trauma and Grief Center",
+          url: "https://mmhpi.org/work/trauma-grief-center/",
+          projects: [
+            {
+              name: "Youth Experiences of Grief Therapy",
+              text: <>Leading a thematic analysis of children's reflections on grief- and trauma-focused therapy, exploring initial expectations, therapeutic experiences, and perceived personal change.</>,
+            },
+          ],
+        },
+      ].map((group) => (
+        <div key={group.lab}>
+          <h3 className="text-lg font-semibold text-white">
+            <a href={group.url} target="_blank" rel="noreferrer" className="underline text-indigo-300">
+              {group.lab}
+            </a>
+          </h3>
+          <ul className="mt-3 list-disc pl-6 space-y-2">
+            {group.projects.map((p) => (
+              <li key={p.name}>
+                <span className="font-semibold text-white">{p.name}:</span> {p.text}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
 
     {/* ——— LINKEDIN FEED ——— */}
